@@ -84,9 +84,7 @@ NTOS_API(ULONG) SeTokenImpersonationLevel(
 // Misc
 // ------------------------------------------------------------------
 
-
-ULONG __cdecl sprintf(char *buffer, const char *format, ...);
-
+//ULONG __cdecl sprintf(char *buffer, const char *format, ...);
 //ULONG __cdecl swprintf(wchar_t *buffer, const wchar_t *format, ...);
 
 NTOS_NTSTATUS   ZwYieldExecution(void);
@@ -210,6 +208,18 @@ typedef struct _REG_OPEN_CREATE_KEY_INFORMATION_VISTA {
     PVOID               Reserved;     // new to Windows Vista
 } REG_OPEN_CREATE_KEY_INFORMATION_VISTA;
 
+
+// ------------------------------------------------------------------
+// Object related
+// ------------------------------------------------------------------
+
+typedef NTSTATUS (*P_ObRegisterCallbacks)(
+    __in POB_CALLBACK_REGISTRATION CallbackRegistration,
+    __deref_out PVOID *RegistrationHandle);
+
+
+typedef NTSTATUS (*P_ObUnRegisterCallbacks)(
+    __in PVOID RegistrationHandle);
 
 // ------------------------------------------------------------------
 // File related
